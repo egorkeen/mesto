@@ -8,11 +8,11 @@
   </head>
   <body>
     <div class="page">
-      <header class="header">
+      <header class="header"> <!--Шапка-->
         <img class="header__logo" src="./images/logo.svg" alt="Логотип">
       </header>
-      <main class="content">
-        <section class="profile">
+      <main class="content"> <!--основной контент-->
+        <section class="profile"> <!--профиль-->
           <img class="profile__avatar" src="./images/Avatar.svg" alt="Аватар">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -21,7 +21,7 @@
           </div>
           <div class="profile__add-button"></div>
         </section>
-        <section class="elements">
+        <section class="elements"> <!--карточки-->
           <div class="element">
             <img class="element__photo" src="./images/picture-1.jpg" alt="Карачаевск">
             <div class="element__container">
@@ -66,9 +66,19 @@
           </div>
         </section>
       </main>
-      <footer class="footer">
+      <footer class="footer"> <!--подвал-->
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
+      <div class="popup">
+        <button class="popup__close-button"></button>
+        <div class="edit-form">
+          <h3 class="edit-form__title">Редактировать профиль</h3>
+          <input type="text" name="user-name" class="edit-form__user-name">
+          <input type="text" name="user-info" class="edit-form__user-info">
+          <button type="submit" class="edit-form__submit-button">Сохранить</button>
+        </div>
+      </div>
+        </div>
     </div>
   </body>
 </html>
