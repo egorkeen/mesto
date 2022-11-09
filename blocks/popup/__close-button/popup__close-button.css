@@ -7,10 +7,11 @@
   border: none;
   margin: auto;
   position: absolute;
-  top: -365px;
-  right: -460px;
+  top: -390px;
+  right: -475px;
   left: 0;
   bottom: 0;
+  transition: .2s linear;
 }
 
 .popup__close-button:hover {
@@ -20,7 +21,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .popup__close-button {
-    top: -365px;
+    top: -385px;
     right: -250px;
   }
 }

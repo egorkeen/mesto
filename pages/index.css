@@ -2,7 +2,7 @@
 @import url(../vendor/normalize.css);
 
 /*fonts*/
-@import url(../fonts/Inter/inter.css);
+@import url(../vendor/Inter/inter.css);
 
 /*page*/
 @import url(../blocks/page/page.css);
@@ -27,7 +27,7 @@
 @import url(../blocks/element/__container/element__container.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
-@import url(../blocks/element/__like-button/_liked/element__like-button_liked.css);
+@import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 
 /*footer*/
 @import url(../blocks/footer/footer.css);
@@ -35,12 +35,14 @@
 
 /*popup*/
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__window/popup__window.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
 /*edit-form*/
-@import url(../blocks/edit-form/edit-form.css);
-@import url(../blocks/edit-form/__title/edit-form__title.css);
-@import url(../blocks/edit-form/__user-name/edit-form__user-name.css);
-@import url(../blocks/edit-form/__user-jop/edit-form__user-info.css);
-@import url(../blocks/edit-form/__submit-button/edit-form__submit-button.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__user-name/form__user-name.css);
+@import url(../blocks/form/__user-info/form__user-info.css);
+@import url(../blocks/form/__submit-button/form__submit-button.css);

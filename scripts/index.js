@@ -1,32 +1,36 @@
-/*Объявляем переменные*/
-let submitButton = document.querySelector('.edit-form__submit-button');
+//Объявляем переменные
+let popup = document.querySelector('.popup');
+let formElement = document.querySelector('.form');
 let editButton = document.querySelector('.profile__edit-button');
 let closeButton = document.querySelector('.popup__close-button');
-let popup = document.querySelector('.popup');
+let nameInput = document.querySelector('.form__input_data_name');
+let infoInput = document.querySelector('.form__input_data_info');
+let userName = document.querySelector('.profile__name');
+let userInfo = document.querySelector('.profile__about');
 
-/*Открытие окна*/
+//Предварительно заносим данные в инпуты из разметки
+nameInput.value = userName.textContent;
+infoInput.value = userInfo.textContent;
+
+//Открытие popup'а
 function openPopup() {
   popup.classList.add('popup_opened');
-  popup.classList.remove('popup');
 }
-editButton.addEventListener('click', openPopup);
 
-/*Закрытие окна*/
+//Закрытие popup'а
 function closePopup() {
   popup.classList.remove('popup_opened');
-  popup.classList.add('popup');
 }
-closeButton.addEventListener('click', closePopup);
 
-/*Изменение имени и информации*/
-function saveChanges() {
-  let profileName = document.querySelector('.profile__name');
-  let profileInfo = document.querySelector('.profile__about');
-  let userName = document.querySelector('.edit-form__user-name').value;
-  let userInfo = document.querySelector('.edit-form__user-info').value;
-  profileName.textContent = userName;
-  profileInfo.textContent = userInfo;
-  closePopup()
-  evt.preventDefault()
+//Изменение разметки на основе данных из инпутов
+function formSubmitHandler (evt) {
+    evt.preventDefault();
+    userName.textContent = nameInput.value;
+    userInfo.textContent = infoInput.value;
+    closePopup();
 }
-submitButton.addEventListener('click', saveChanges);
+
+//Обработчики
+formElement.addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
