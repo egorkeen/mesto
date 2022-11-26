@@ -1,4 +1,5 @@
-.popup__window {
+.popup__edit-form {
+  display: none;
   width: 430px;
   height: fit-content;
   background-color: white;
@@ -8,7 +9,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .popup__window {
+  .popup__edit-form {
     width: 282px;
   }
 }
