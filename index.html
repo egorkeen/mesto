@@ -27,8 +27,8 @@
         <!--карточки-->
         <template class="template">
           <article class="element">
-            <button type="button" class="element__remove-button"></button>
-            <img class="element__photo" src=" " alt=" ">
+            <button type="button" class="element__delete-button"></button>
+            <img class="element__image" src=" " alt=" ">
             <div class="element__container">
               <h2 class="element__title"></h2>
               <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
@@ -41,29 +41,29 @@
       <!--подвал-->
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
-      <div class="popup__edit-window">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
-        <form name="form" class="form" id="form1">
-          <input type="text" name="user-name" class="form__input form__input_data_name" required>
-          <input type="text" name="user-info" class="form__input form__input_data_info" required>
-          <button type="submit" id="submitChanges" class="form__submit-button" aria-label="Сохранить изменения">Сохранить</button>
-        </form>
-      </div>
-      <div class="popup__add-window">
-        <h3 class="popup__title">Новое место</h3>
-        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
-        <form name="form" class="form" id="form2">
-          <input type="text" name="place-name" class="form__input form__input_place_name" placeholder="Название" required>
-          <input type="text" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
-          <button type="submit" id="submitPlace" class="form__submit-button" aria-label="Сохранить изменения">Создать</button>
-        </form>
-      </div>
-      <div class="popup__picture-window">
-        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
-        <img class="popup__opened-picture" src=" " alt=" ">
-        <span class="popup__picture-span">Надпись</span>
+    <div class="popup popup__profile-popup"> <!--Редактирование профиля-->
+      <form name="form" class="form" id="form1">
+        <button type="button" class="popup__close-button" id="close-profile" aria-label="Закрыть окно"></button>
+        <h3 class="form__title">Редактировать профиль</h3>
+        <input type="text" name="user-name" class="form__input form__input_data_name" required>
+        <input type="text" name="user-info" class="form__input form__input_data_info" required>
+        <button type="submit" id="submitChanges" class="form__submit-button" aria-label="Сохранить изменения">Сохранить</button>
+      </form>
+    </div>
+    <div class="popup popup__card-popup"> <!--Новая карточка-->
+      <form name="form" class="form" id="form2">
+        <button type="button" class="popup__close-button" id="close-card" aria-label="Закрыть окно"></button>
+        <h3 class="form__title">Новое место</h3>
+        <input type="text" name="place-name" class="form__input form__input_place_name" placeholder="Название" required>
+        <input type="text" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
+        <button type="submit" id="submitPlace" class="form__submit-button" aria-label="Сохранить изменения">Создать</button>
+      </form>
+    </div>
+    <div class="popup popup__image-popup"><!--Попап картинки-->
+      <div class="popup__image-container">
+        <button type="button" class="popup__close-button" id="close-image" aria-label="Закрыть окно"></button>
+        <img class="popup__image" src=" " alt=" ">
+        <span class="popup__image-span">Надпись</span>
       </div>
     </div>
     <script src="./scripts/index.js"></script>

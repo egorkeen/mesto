@@ -1,7 +1,7 @@
-.popup__opened-picture {
+.popup__image {
   max-width: 75vw;
   max-height: 75vh;
-  position: relative;
+  margin: 0 auto;
   display: block;
   object-fit: cover;
 }
