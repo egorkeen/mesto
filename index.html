@@ -42,8 +42,8 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup profile-popup"> <!--Редактирование профиля-->
-      <form name="form" class="form" id="form1">
-        <button type="button" class="popup__close-button" id="close-profile" aria-label="Закрыть окно"></button>
+      <form name="profile-form" class="form">
+        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Редактировать профиль</h3>
         <input type="text" name="user-name" class="form__input form__input_data_name" required>
         <input type="text" name="user-info" class="form__input form__input_data_info" required>
@@ -51,8 +51,8 @@
       </form>
     </div>
     <div class="popup card-popup"> <!--Новая карточка-->
-      <form name="form" class="form" id="form2">
-        <button type="button" class="popup__close-button" id="close-card" aria-label="Закрыть окно"></button>
+      <form name="card-form" class="form">
+        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Новое место</h3>
         <input type="text" name="place-name" class="form__input form__input_place_name" placeholder="Название" required>
         <input type="text" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
@@ -61,7 +61,7 @@
     </div>
     <div class="popup image-popup"><!--Попап картинки-->
       <div class="popup__image-container">
-        <button type="button" class="popup__close-button" id="close-image" aria-label="Закрыть окно"></button>
+        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <img class="popup__image" src=" " alt=" ">
         <span class="popup__image-span">Надпись</span>
       </div>

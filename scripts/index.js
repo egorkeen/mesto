@@ -1,23 +1,17 @@
 //Объявляем переменные
 //popup окна и т.п.
-const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.profile-popup');
 const cardPopup = document.querySelector('.card-popup');
 const imagePopup = document.querySelector('.image-popup');
 const popupImage = document.querySelector('.popup__image');
 const popupImageSpan = document.querySelector('.popup__image-span');
 //формы
-const form1 = document.getElementById('form1');
-const form2 = document.getElementById('form2');
+const profileForm = document.forms['profile-form']
+const cardForm = document.forms['card-form'];
 //кнопки
 const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelectorAll('.popup__close-button');
-const profileCloseBtn = document.getElementById('close-profile');
-const cardCloseBtn = document.getElementById('close-card');
-const imageCloseBtn = document.getElementById('close-image');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
-const likeButton = document.querySelectorAll('.element__like-button');
-const deleteButton = document.querySelectorAll('.element__delete-button');
 //данные инпутов, имя и описание
 const nameInput = document.querySelector('.form__input_data_name');
 const infoInput = document.querySelector('.form__input_data_info');
@@ -27,9 +21,7 @@ const userName = document.querySelector('.profile__name');
 const userInfo = document.querySelector('.profile__about');
 //переменные для карточек
 const cardTemplate = document.querySelector('.template').content.querySelector('.element');
-const element = document.querySelectorAll('.element');
 const elements = document.querySelector('.elements');
-const images = document.querySelectorAll('.element__image');
 const initialCards = [
   {
     name: 'Нью-Йорк',
@@ -57,10 +49,6 @@ const initialCards = [
   }
 ];
 
-//Вносим данные в окно редактирования
-nameInput.value = userName.textContent
-infoInput.value = userInfo.textContent;
-
 //Удаление карточек
 const handleDeleteCard = (event) => {
   event.target.closest('.element').remove();
@@ -72,11 +60,11 @@ const handleLikeCard = (event) => {
 }
 
 //открытие картинки
-const handleOpenImage = (event) => {
+const handleOpenImage = (dataCard) => {
   openPopup(imagePopup);
-  popupImage.src = event.target.src;
-  popupImage.alt = event.target.alt;
-  popupImageSpan.textContent = event.target.alt;
+  popupImage.src = dataCard.link;
+  popupImage.alt = dataCard.name;
+  popupImageSpan.textContent = dataCard.name;
 }
 
 //генерация карточки
@@ -87,7 +75,7 @@ const generateCard = (dataCard) => {
   const image = newCard.querySelector('.element__image');
   image.src = dataCard.link;
   image.alt = dataCard.name;
-  image.addEventListener('click', handleOpenImage);
+  image.addEventListener('click', () => handleOpenImage(dataCard));
   const deleteButton = newCard.querySelector('.element__delete-button');
   deleteButton.addEventListener('click', handleDeleteCard);
   const likeButton = newCard.querySelector('.element__like-button');
@@ -100,16 +88,17 @@ const renderCard = (dataCard) => {
   elements.prepend(generateCard(dataCard));
 };
 
-initialCards.forEach((dataCard) => {
-  renderCard(dataCard);
-});
+initialCards.forEach(renderCard);
 
 //Добавление Места
-function createCard(dataCard) {
-  dataCard.preventDefault();
-  dataCard.name = placeName.value;
-  dataCard.link = placeLink.value;
-  renderCard(dataCard);
+function createCard(evt) {
+  evt.preventDefault();
+  const item = {};
+  item.name = placeName.value;
+  item.link = placeLink.value;
+  renderCard(item);
+  placeName.value = "";
+  placeLink.value = "";
   closePopup(cardPopup);
 }
 
@@ -122,31 +111,22 @@ function closePopup(popup) {
   popup.classList.remove('popup_active');
 };
 
-//Открытие картинки
-const openImage = () => {
-  images.forEach(function(image){
-    image.addEventListener('click', function(){
-      openPopup(imagePopup);
-      popupImage.src = image.src;
-      popupImage.alt = picture.alt;
-      popupImageSpan.textContent = image.alt;
-    });
-  });
-};
-
 //Изменение разметки на основе данных из инпутов
-function formSubmitHandler (evt) {
+function handleProfileSubmit (evt) {
     evt.preventDefault();
     userName.textContent = nameInput.value;
     userInfo.textContent = infoInput.value;
     closePopup(profilePopup);
 };
 
+//логика срабатывания кнопки закрытия
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => {closePopup(popup)});
+});
+
 //Обработчики
-form1.addEventListener('submit', formSubmitHandler);
-form2.addEventListener('submit', createCard);
-editButton.addEventListener('click', () => {openPopup(profilePopup)});
+profileForm.addEventListener('submit', handleProfileSubmit);
+cardForm.addEventListener('submit', createCard);
+editButton.addEventListener('click', () => {openPopup(profilePopup, nameInput.value = userName.textContent, infoInput.value = userInfo.textContent)});
 addButton.addEventListener('click', () => {openPopup(cardPopup)});
-profileCloseBtn.addEventListener('click', () => {closePopup(profilePopup)});
-cardCloseBtn.addEventListener('click', () => {closePopup(cardPopup)});
-imageCloseBtn.addEventListener('click', () => {closePopup(imagePopup)});
