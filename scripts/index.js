@@ -1,5 +1,5 @@
 //Объявляем переменные
-//popup окна и т.п.
+const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.profile-popup');
 const cardPopup = document.querySelector('.card-popup');
 const imagePopup = document.querySelector('.image-popup');
@@ -48,6 +48,15 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1620964780032-81ef649db4d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
   }
 ];
+const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  inputError: 'form__input_type_error',
+  activeInputError: 'form__input-error_active',
+  submitButtonSelector: '.form__submit-button',
+  activeButtonClass: 'form__submit-button',
+  inactiveButtonClass: 'form__submit-button_inactive'
+}
 
 //Удаление карточек
 const handleDeleteCard = (event) => {
@@ -119,11 +128,34 @@ function handleProfileSubmit (evt) {
     closePopup(profilePopup);
 };
 
-//логика срабатывания кнопки закрытия
+//логика кнопки закрытия
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => {closePopup(popup)});
 });
+
+//закрытие при нажатии клавиши escape
+popups.forEach(popup => {
+  document.addEventListener('keydown', function (event) {
+    event.preventDefault()
+    if (event.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
+});
+
+//закрытие при нажатии по оверлею
+popups.forEach(popup => {
+  popup.addEventListener('mouseup', function (event) {
+    const targetClassList = event.target.classList;
+    if (targetClassList.contains('popup')) {
+      closePopup(popup)
+    };
+  });
+});
+
+//Включение валидации
+enableValidation(validationConfig);
 
 //Обработчики
 profileForm.addEventListener('submit', handleProfileSubmit);

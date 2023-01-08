@@ -41,21 +41,25 @@
       <!--подвал-->
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup profile-popup"> <!--Редактирование профиля-->
+    <div class="popup profile-popup" novalidate> <!--Редактирование профиля-->
       <form name="profile-form" class="form">
         <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input type="text" name="user-name" class="form__input form__input_data_name" required>
-        <input type="text" name="user-info" class="form__input form__input_data_info" required>
+        <input type="text" id="name-input" name="user-name" class="form__input form__input_data_name" minlength="2" maxlength="40" required>
+        <span class="form__input-error name-input-error"></span>
+        <input type="text" id="info-input" name="user-info" class="form__input form__input_data_info" minlength="2" maxlength="200" required>
+        <span class="form__input-error info-input-error"></span>
         <button type="submit" id="submitChanges" class="form__submit-button" aria-label="Сохранить изменения">Сохранить</button>
       </form>
     </div>
     <div class="popup card-popup"> <!--Новая карточка-->
-      <form name="card-form" class="form">
+      <form name="card-form" class="form" novalidate>
         <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Новое место</h3>
-        <input type="text" name="place-name" class="form__input form__input_place_name" placeholder="Название" required>
-        <input type="text" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
+        <input type="text" id="place-input" name="place-name" class="form__input form__input_place_name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="form__input-error place-input-error"></span>
+        <input type="url" id="link-input" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
+        <span class="form__input-error link-input-error"></span>
         <button type="submit" id="submitPlace" class="form__submit-button" aria-label="Сохранить изменения">Создать</button>
       </form>
     </div>
@@ -66,6 +70,7 @@
         <span class="popup__image-span">Надпись</span>
       </div>
     </div>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
