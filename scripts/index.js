@@ -114,10 +114,23 @@ function createCard(evt) {
 //Открытие и закрытие popup
 function openPopup(popup) {
   popup.classList.add('popup_active');
+  //закрытие при нажатии клавиши escape
+  popups.forEach(popup => {
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closePopup(popup);
+      };
+    });
+  });
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
 };
 
 //Изменение разметки на основе данных из инпутов
@@ -132,15 +145,6 @@ function handleProfileSubmit (evt) {
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => {closePopup(popup)});
-});
-
-//закрытие при нажатии клавиши escape
-popups.forEach(popup => {
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
 });
 
 //закрытие при нажатии по оверлею
