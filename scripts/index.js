@@ -137,7 +137,6 @@ closeButtons.forEach((button) => {
 //закрытие при нажатии клавиши escape
 popups.forEach(popup => {
   document.addEventListener('keydown', function (event) {
-    event.preventDefault()
     if (event.key === 'Escape') {
       closePopup(popup);
     };
