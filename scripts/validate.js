@@ -1,3 +1,9 @@
+//блокировка кнопки после отправки формы
+const blockForm = (config) => {
+  const submitButton = config.submitButtonSelector;
+  submitButton.disabled = true;
+}
+
 //показать ошибку
 const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -60,5 +66,6 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     setEventListeners(formElement, config);
+    blockForm(config);
   });
 };

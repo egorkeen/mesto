@@ -22,32 +22,7 @@ const userInfo = document.querySelector('.profile__about');
 //переменные для карточек
 const cardTemplate = document.querySelector('.template').content.querySelector('.element');
 const elements = document.querySelector('.elements');
-const initialCards = [
-  {
-    name: 'Нью-Йорк',
-    link: 'https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-  },
-  {
-    name: 'Санкт-Петербург',
-    link: 'https://images.unsplash.com/photo-1610197361600-33a3a5073cad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-  },
-  {
-    name: 'Ростов-на-Дону',
-    link: 'https://images.unsplash.com/photo-1560871875-2abe086b8f05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
-  },
-  {
-    name: 'Минск',
-    link: 'https://images.unsplash.com/photo-1597986775867-1d871fad81fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
-  },
-  {
-    name: 'Рио-де-Жанейро',
-    link: 'https://images.unsplash.com/photo-1544989164-31dc3c645987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80'
-  },
-  {
-    name: 'Пекин',
-    link: 'https://images.unsplash.com/photo-1620964780032-81ef649db4d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-  }
-];
+//конфиг валидации
 const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -70,10 +45,10 @@ const handleLikeCard = (event) => {
 
 //открытие картинки
 const handleOpenImage = (dataCard) => {
-  openPopup(imagePopup);
   popupImage.src = dataCard.link;
   popupImage.alt = dataCard.name;
   popupImageSpan.textContent = dataCard.name;
+  openPopup(imagePopup);
 }
 
 //генерация карточки
@@ -106,35 +81,32 @@ function createCard(evt) {
   item.name = placeName.value;
   item.link = placeLink.value;
   renderCard(item);
+  closePopup(cardPopup);
   placeName.value = "";
   placeLink.value = "";
-  closePopup(cardPopup);
+}
+
+//проверка нажатия клавиши escape
+const closeByEsc = (event) => {
+  if(event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_active');
+    closePopup(openedPopup);
+  }
 }
 
 //Открытие и закрытие popup
 function openPopup(popup) {
   popup.classList.add('popup_active');
-  //закрытие при нажатии клавиши escape
-  popups.forEach(popup => {
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        closePopup(popup);
-      };
-    });
-  });
+  document.addEventListener('keydown', closeByEsc);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  document.removeEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
+  document.removeEventListener('keydown', closeByEsc);
 };
 
 //Изменение разметки на основе данных из инпутов
-function handleProfileSubmit (evt) {
+function handleProfileSubmit(evt) {
     evt.preventDefault();
     userName.textContent = nameInput.value;
     userInfo.textContent = infoInput.value;
