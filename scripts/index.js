@@ -98,6 +98,7 @@ const closeByEsc = (event) => {
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', closeByEsc);
+  blockForm(validationConfig);
 };
 
 function closePopup(popup) {

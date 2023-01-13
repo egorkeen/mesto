@@ -1,7 +1,11 @@
 //блокировка кнопки после отправки формы
 const blockForm = (config) => {
-  const submitButton = config.submitButtonSelector;
-  submitButton.disabled = true;
+  const buttonList = document.querySelectorAll(config.submitButtonSelector);
+  buttonList.forEach((button) =>{
+    button.classList.add(config.inactiveButtonClass);
+    button.classList.remove(config.activeButtonClass);
+    button.disabled = true;
+  });
 }
 
 //показать ошибку
@@ -66,6 +70,5 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     setEventListeners(formElement, config);
-    blockForm(config);
   });
 };
