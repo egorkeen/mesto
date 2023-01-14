@@ -1,12 +1,9 @@
 //блокировка кнопки после отправки формы
-const blockForm = (config) => {
-  const buttonList = document.querySelectorAll(config.submitButtonSelector);
-  buttonList.forEach((button) =>{
-    button.classList.add(config.inactiveButtonClass);
-    button.classList.remove(config.activeButtonClass);
-    button.disabled = true;
-  });
-}
+const blockForm = (buttonElement, config) => {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.classList.remove(config.activeButtonClass);
+  buttonElement.disabled = true;
+};
 
 //показать ошибку
 const showInputError = (formElement, inputElement, errorMessage, config) => {

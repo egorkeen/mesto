@@ -12,6 +12,8 @@ const cardForm = document.forms['card-form'];
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
+const profileSubmitButton = document.querySelector('#submit-changes');
+const cardSubmitButton = document.querySelector('#submit-place');
 //данные инпутов, имя и описание
 const nameInput = document.querySelector('.form__input_data_name');
 const infoInput = document.querySelector('.form__input_data_info');
@@ -98,7 +100,6 @@ const closeByEsc = (event) => {
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', closeByEsc);
-  blockForm(validationConfig);
 };
 
 function closePopup(popup) {
@@ -135,6 +136,8 @@ enableValidation(validationConfig);
 
 //Обработчики
 profileForm.addEventListener('submit', handleProfileSubmit);
+profileForm.addEventListener('submit', () => {blockForm(profileSubmitButton, validationConfig)});
 cardForm.addEventListener('submit', createCard);
+cardForm.addEventListener('submit', () => {blockForm(cardSubmitButton, validationConfig)});
 editButton.addEventListener('click', () => {openPopup(profilePopup, nameInput.value = userName.textContent, infoInput.value = userInfo.textContent)});
 addButton.addEventListener('click', () => {openPopup(cardPopup)});
