@@ -37,7 +37,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-/*popup*/
+/*popups*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/profile-popup/profile-popup.css);
 @import url(../blocks/card-popup/card-popup.css);
@@ -48,7 +48,7 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-span/popup__image-span.css);
 
-/*edit-form*/
+/*forms*/
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
