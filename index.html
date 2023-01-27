@@ -25,16 +25,6 @@
       </section>
       <section class="elements">
         <!--карточки-->
-        <template class="template">
-          <article class="element">
-            <button type="button" class="element__delete-button"></button>
-            <img class="element__image" src=" " alt=" ">
-            <div class="element__container">
-              <h2 class="element__title"></h2>
-              <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
-            </div>
-            </article>
-        </template>
       </section>
     </main>
     <footer class="footer">
@@ -70,8 +60,17 @@
         <span class="popup__image-span">Надпись</span>
       </div>
     </div>
-    <script src="./scripts/initialCards.js"></script>
-    <script src="./scripts/validate.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <!--template-элемент-->
+    <template class="template">
+      <article class="element">
+        <button type="button" class="element__delete-button"></button>
+        <img class="element__image" src=" " alt=" ">
+        <div class="element__container">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
+        </div>
+        </article>
+    </template>
   </body>
 </html>
