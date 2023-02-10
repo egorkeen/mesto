@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MESTO</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="page">
     <header class="header">
       <!--Шапка-->
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+      <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логотип">
     </header>
     <main class="content">
       <!--основной контент-->
       <section class="profile">
         <!--профиль-->
-        <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар">
+        <img src="<%=require('./images/Avatar.jpg')%>" class="profile__avatar" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
@@ -35,9 +34,9 @@
       <form name="profile-form" class="form">
         <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input type="text" id="name-input" name="user-name" class="form__input form__input_data_name" minlength="2" maxlength="40" required>
+        <input type="text" id="name-input" name="user-name" class="form__input form__input_data_name" placeholder="Имя" minlength="2" maxlength="40" required>
         <span class="form__input-error name-input-error"></span>
-        <input type="text" id="info-input" name="user-info" class="form__input form__input_data_info" minlength="2" maxlength="200" required>
+        <input type="text" id="info-input" name="user-info" class="form__input form__input_data_info" placeholder="Описание" minlength="2" maxlength="200" required>
         <span class="form__input-error info-input-error"></span>
         <button type="submit" id="submit-changes" class="form__submit-button profile-submit" aria-label="Сохранить изменения">Сохранить</button>
       </form>
@@ -60,7 +59,6 @@
         <span class="popup__image-span">Надпись</span>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
     <!--template-элемент-->
     <template class="template">
       <article class="element">

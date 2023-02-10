@@ -1,13 +1,11 @@
-//импорт нужных переменных и функций
-import { popupImage, popupImageSpan, imagePopup, openPopup, closePopup } from './index.js';
-
 //класс карточки
 class Card {
 
-  constructor(dataCard, templateSelector) {
+  constructor(dataCard, templateSelector, handleCardClick) {
     this._dataCard = dataCard;
-    this._templateSelector = templateSelector
-  };
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
+  }
 
   //устанавка данные
   _setData() {
@@ -16,36 +14,28 @@ class Card {
     const imageElement = this._newCard.querySelector('.element__image');
     imageElement.src = this._dataCard.link;
     imageElement.alt = this._dataCard.name;
-  };
-
-  //открытие попапа с картинкой
-  _openImage() {
-    popupImage.src = this._dataCard.link;
-    popupImage.alt = this._dataCard.name;
-    popupImageSpan.textContent = this._dataCard.name;
-    openPopup(imagePopup);
-  };
+  }
 
   //удаление карточки
   _deleteCard() {
     this._newCard.remove();
     this._newCard = null;
-  };
+  }
 
   //лайк карточки
   _likeCard() {
     this._newCard.querySelector('.element__like-button').classList.toggle('element__like-button_active');
-  };
+  }
 
   //установка слушателей
   _setEventListeners() {
     const imageElement = this._newCard.querySelector('.element__image');
-    imageElement.addEventListener('click', () => { this._openImage() });
+    imageElement.addEventListener('click', this._handleCardClick);
     const deleteButton = this._newCard.querySelector('.element__delete-button');
     deleteButton.addEventListener('click', () => { this._deleteCard() });
     const likeButton = this._newCard.querySelector('.element__like-button');
     likeButton.addEventListener('click', () => { this._likeCard() });
-  };
+  }
 
   //сборка карточки
   getView() {
@@ -54,8 +44,8 @@ class Card {
     this._setEventListeners();
 
     return this._newCard;
-  };
+  }
 
-};
+}
 
 export { Card };

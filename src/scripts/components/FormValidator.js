@@ -1,3 +1,4 @@
+//класс валидации формы
 class FormValidator {
 
   constructor (config, formElement) {
@@ -11,12 +12,14 @@ class FormValidator {
     this._formElement = formElement;
   };
 
+  //блокировать кнопку подтверждения
   _blockForm() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.classList.remove(this._activeButtonClass);
     this._submitButton.disabled = true;
   }
 
+  //отобразить ошибку у инпута
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputError);
@@ -24,6 +27,7 @@ class FormValidator {
     errorElement.textContent = errorMessage;
   }
 
+  //скрыть ошибку у инпута
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputError);
@@ -31,6 +35,7 @@ class FormValidator {
     errorElement.textContent = '';
   }
 
+  //проверить валидность инпута и отобразить/скрыть ошибку
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -40,17 +45,17 @@ class FormValidator {
     };
   };
 
+  //проверить все инпуты на валидность
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
 
+  //переключить состояние кнопки
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.classList.remove(this._activeButtonClass);
-      this._submitButton.disabled = true;
+      this._blockForm();
     }
     else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
@@ -59,6 +64,7 @@ class FormValidator {
     }
   };
 
+  //установить слушатели
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
@@ -72,6 +78,7 @@ class FormValidator {
     });
   };
 
+  //активировать валидацию
   enableValidation() {
     this._setEventListeners();
   };
