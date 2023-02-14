@@ -2,7 +2,6 @@
 class FormValidator {
 
   constructor (config, formElement) {
-    this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._inputError = config.inputError;
     this._activeInputError = config.activeInputError;
@@ -13,7 +12,7 @@ class FormValidator {
   };
 
   //блокировать кнопку подтверждения
-  _blockForm() {
+  blockForm() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.classList.remove(this._activeButtonClass);
     this._submitButton.disabled = true;
@@ -55,7 +54,7 @@ class FormValidator {
   //переключить состояние кнопки
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._blockForm();
+      this.blockForm();
     }
     else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
@@ -69,7 +68,7 @@ class FormValidator {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
-    this._formElement.addEventListener('submit', () => {this._blockForm()})
+    this._formElement.addEventListener('submit', () => {this.blockForm()});
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);

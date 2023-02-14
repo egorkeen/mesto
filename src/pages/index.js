@@ -1,17 +1,15 @@
 // импорт
 import './index.css';
-import { initialCards } from '../scripts/components/initialCards.js';
+import { initialCards } from '../scripts/utils/initialCards.js';
 import { Card } from '../scripts/components/Card.js';
 import { FormValidator } from '../scripts/components/FormValidator.js';
 import { Section } from '../scripts/components/Section.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
+import { info } from 'autoprefixer';
 
 // объявить переменные
-const profilePopupClass = document.querySelector('.profile-popup');
-const cardPopupClass = document.querySelector('.card-popup');
-
 // формы
 const profileForm = document.forms['profile-form']
 const cardForm = document.forms['card-form'];
@@ -23,18 +21,6 @@ const addButton = document.querySelector('.profile__add-button');
 // данные инпутов, имя и описание
 const nameInput = document.querySelector('.form__input_data_name');
 const infoInput = document.querySelector('.form__input_data_info');
-const placeName = document.querySelector('.form__input_place_name');
-const placeLink = document.querySelector('.form__input_place_link');
-export const profileUserName = document.querySelector('.profile__name');
-export const profileUserInfo = document.querySelector('.profile__about');
-
-// переменные для карточек
-const elements = document.querySelector('.elements');
-
-// шаблон для карточек
-const cardTemplate = document
-.querySelector('.template')
-.content.querySelector('.element');
 
 // конфиг валидации
 const validationConfig = {
@@ -48,11 +34,14 @@ const validationConfig = {
 }
 
 // сбрать данные с помощью класса UserInfo
-const profileData = new UserInfo (nameInput, infoInput);
+const profileData = new UserInfo ('.profile__name', '.profile__info');
+
+// попап с картинкой
+const imagePopup = new PopupWithImage ('.image-popup');
 
 // создать функцию, которая собирает карточку
 function createCard(dataCard) {
-  const card = new Card (dataCard, cardTemplate, () => {imagePopup.open(dataCard)});
+  const card = new Card (dataCard, '.template', () => {imagePopup.open(dataCard)});
   return card.getView();
 }
 
@@ -60,48 +49,42 @@ function createCard(dataCard) {
 const cardList = new Section ({
   items: initialCards,
   renderer: (item) => {
-    const cardElement = new createCard(item);
+    const cardElement = createCard(item);
     cardList.addItem(cardElement);
   }},
-  elements);
+  '.elements');
 
-cardList.renderItems();
-
-// попап с картинкой
-const imagePopup = new PopupWithImage (document.querySelector('.image-popup'));
+  cardList.renderItems();
 
 // попап профиля
-const profilePopup = new PopupWithForm (profilePopupClass,
-  (evt) => {
-    evt.preventDefault();
-    profileData.getUserInfo();
-    profileData.setUserInfo();
-    profilePopup.close();
+const profilePopup = new PopupWithForm ('.profile-popup',
+  (inputData) => {
+    profileData.setUserInfo(inputData);
 });
-
-// попап добавления карточки
-const cardPopup = new PopupWithForm (cardPopupClass,
-  (evt) => {
-    evt.preventDefault();
-    const item = {};
-    item.name = placeName.value;
-    item.link = placeLink.value;
-    cardList.addItem(createCard(item));
-    cardPopup.close();
-  });
+  // попап добавления карточки
+const cardPopup = new PopupWithForm ('.card-popup',
+  (dataCard) => {
+    cardList.addItem(createCard(dataCard));
+});
 
 // включить валидацию
 const profileFormValidator = new FormValidator (validationConfig, profileForm);
 profileFormValidator.enableValidation();
+editButton.addEventListener('click', profileFormValidator.blockForm());
 const cardFormValidator = new FormValidator (validationConfig, cardForm);
 cardFormValidator.enableValidation();
+addButton.addEventListener('click', cardFormValidator.blockForm());
 
 // включить слушатели для попапа с картинкой
 imagePopup.setEventListeners();
 
 // включить слушатели для кнопки редактирования и попапа профиля
 profilePopup.setEventListeners();
-editButton.addEventListener('click', () => { profilePopup.open() });
+editButton.addEventListener('click', () => {
+  nameInput.value = profileData.getUserInfo().nameInput;
+  infoInput.value = profileData.getUserInfo().infoInput;
+  profilePopup.open()
+});
 
 // включить слушатели для кнопки добавления места и попапа места
 cardPopup.setEventListeners();

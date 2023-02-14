@@ -1,24 +1,22 @@
-import { profileUserName, profileUserInfo } from '../../pages/index.js';
-
 class UserInfo {
 
-  constructor(userName, userInfo) {
-    this._userName = userName;
-    this._userInfo = userInfo;
+  constructor(nameSelector, infoSelector) {
+    this._userName = document.querySelector(nameSelector);
+    this._userInfo = document.querySelector(infoSelector);
   }
 
   getUserInfo() {
-   const userData = {};
-   userData.name = this._userName.value;
-   userData.info = this._userInfo.value;
+    const inputData = {
+      nameInput: this._userName.textContent,
+      infoInput: this._userInfo.textContent
+    }
 
-   return userData;
+   return inputData;
   }
 
-  setUserInfo() {
-    this._userData = this.getUserInfo();
-    profileUserName.textContent = this._userData.name;
-    profileUserInfo.textContent = this._userData.info;
+  setUserInfo(userData) {
+    this._userName.textContent = userData.name;
+    this._userInfo.textContent = userData.info;
   }
 
 }

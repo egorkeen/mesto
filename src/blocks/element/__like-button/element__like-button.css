@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   width: 22px;
   height: 19px;
-  transition: .2s linear;
+  transition: .1s linear;
 }
 
 .element__like-button:hover {

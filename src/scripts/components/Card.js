@@ -9,11 +9,9 @@ class Card {
 
   //устанавка данные
   _setData() {
-    const titleElement = this._newCard.querySelector('.element__title');
-    titleElement.textContent = this._dataCard.name;
-    const imageElement = this._newCard.querySelector('.element__image');
-    imageElement.src = this._dataCard.link;
-    imageElement.alt = this._dataCard.name;
+    this._titleElement.textContent = this._dataCard.name;
+    this._imageElement.src = this._dataCard.link;
+    this._imageElement.alt = this._dataCard.name;
   }
 
   //удаление карточки
@@ -29,17 +27,20 @@ class Card {
 
   //установка слушателей
   _setEventListeners() {
-    const imageElement = this._newCard.querySelector('.element__image');
-    imageElement.addEventListener('click', this._handleCardClick);
-    const deleteButton = this._newCard.querySelector('.element__delete-button');
-    deleteButton.addEventListener('click', () => { this._deleteCard() });
-    const likeButton = this._newCard.querySelector('.element__like-button');
-    likeButton.addEventListener('click', () => { this._likeCard() });
+    this._imageElement.addEventListener('click', this._handleCardClick);
+    this._deleteButton.addEventListener('click', () => { this._deleteCard() });
+    this._likeButton.addEventListener('click', () => { this._likeCard() });
   }
 
   //сборка карточки
   getView() {
-    this._newCard = this._templateSelector.cloneNode(true);
+    this._newCard = document
+    .querySelector(this._templateSelector)
+    .content.querySelector('.element').cloneNode(true);
+    this._imageElement = this._newCard.querySelector('.element__image');
+    this._deleteButton = this._newCard.querySelector('.element__delete-button');
+    this._titleElement = this._newCard.querySelector('.element__title');
+    this._likeButton = this._newCard.querySelector('.element__like-button');
     this._setData();
     this._setEventListeners();
 

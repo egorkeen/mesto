@@ -15,9 +15,9 @@
       <section class="profile">
         <!--профиль-->
         <img src="<%=require('./images/Avatar.jpg')%>" class="profile__avatar" alt="Аватар">
-        <div class="profile__info">
+        <div class="profile__data">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__about">Исследователь океана</p>
+          <p class="profile__info">Исследователь океана</p>
           <button type="button" class="profile__edit-button" aria-label="Редактировать профиль"></button>
         </div>
         <button type="button" class="profile__add-button" aria-label="Добавить картинку"></button>
@@ -34,9 +34,9 @@
       <form name="profile-form" class="form">
         <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input type="text" id="name-input" name="user-name" class="form__input form__input_data_name" placeholder="Имя" minlength="2" maxlength="40" required>
+        <input type="text" id="name-input" name="name" class="form__input form__input_data_name" placeholder="Имя" minlength="2" maxlength="40" required>
         <span class="form__input-error name-input-error"></span>
-        <input type="text" id="info-input" name="user-info" class="form__input form__input_data_info" placeholder="Описание" minlength="2" maxlength="200" required>
+        <input type="text" id="info-input" name="info" class="form__input form__input_data_info" placeholder="Описание" minlength="2" maxlength="200" required>
         <span class="form__input-error info-input-error"></span>
         <button type="submit" id="submit-changes" class="form__submit-button profile-submit" aria-label="Сохранить изменения">Сохранить</button>
       </form>
@@ -45,9 +45,9 @@
       <form name="card-form" class="form" novalidate>
         <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
         <h3 class="form__title">Новое место</h3>
-        <input type="text" id="place-input" name="place-name" class="form__input form__input_place_name" placeholder="Название" minlength="2" maxlength="30" required>
+        <input type="text" id="place-input" name="name" class="form__input form__input_place_name" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="form__input-error place-input-error"></span>
-        <input type="url" id="link-input" name="place-link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
+        <input type="url" id="link-input" name="link" class="form__input form__input_place_link" placeholder="Ссылка на картинку" required>
         <span class="form__input-error link-input-error"></span>
         <button type="submit" id="submit-place" class="form__submit-button" aria-label="Сохранить изменения">Создать</button>
       </form>
@@ -63,7 +63,7 @@
     <template class="template">
       <article class="element">
         <button type="button" class="element__delete-button"></button>
-        <img class="element__image" src=" " alt=" ">
+        <img class="element__image" src="#" alt="">
         <div class="element__container">
           <h2 class="element__title"></h2>
           <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
