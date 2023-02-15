@@ -70,22 +70,25 @@ const cardPopup = new PopupWithForm ('.card-popup',
 // включить валидацию
 const profileFormValidator = new FormValidator (validationConfig, profileForm);
 profileFormValidator.enableValidation();
-editButton.addEventListener('click', profileFormValidator.blockForm());
 const cardFormValidator = new FormValidator (validationConfig, cardForm);
 cardFormValidator.enableValidation();
-addButton.addEventListener('click', cardFormValidator.blockForm());
 
 // включить слушатели для попапа с картинкой
 imagePopup.setEventListeners();
 
-// включить слушатели для кнопки редактирования и попапа профиля
+// включить слушатели для кнопки редактирования, попапа редактирования профиля и блокировки кнопки
 profilePopup.setEventListeners();
 editButton.addEventListener('click', () => {
-  nameInput.value = profileData.getUserInfo().nameInput;
-  infoInput.value = profileData.getUserInfo().infoInput;
+  profileFormValidator.blockForm();
+  const { name, info } = profileData.getUserInfo();
+  nameInput.value = name;
+  infoInput.value = info;
   profilePopup.open()
 });
 
-// включить слушатели для кнопки добавления места и попапа места
+// включить слушатели для кнопки добавления места, попапа с добавлением карточки и блокировки кнопки
 cardPopup.setEventListeners();
-addButton.addEventListener('click', () => { cardPopup.open() });
+addButton.addEventListener('click', () => {
+  cardPopup.open();
+  cardFormValidator.blockForm();
+});

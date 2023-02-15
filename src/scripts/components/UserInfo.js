@@ -6,12 +6,12 @@ class UserInfo {
   }
 
   getUserInfo() {
-    const inputData = {
-      nameInput: this._userName.textContent,
-      infoInput: this._userInfo.textContent
+    const userData = {
+      name: this._userName.textContent,
+      info: this._userInfo.textContent
     }
 
-   return inputData;
+   return userData;
   }
 
   setUserInfo(userData) {
