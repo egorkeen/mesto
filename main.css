@@ -6,6 +6,7 @@
 .content{min-height:600px}
 .profile{align-items:center;display:flex;height:-moz-fit-content;height:fit-content;margin:0 auto 51px;max-width:880px;padding:0;position:relative;z-index:10}@media screen and (min-width:320px) and (max-width:767px){.profile{flex-direction:column;margin-bottom:36px;max-width:282px}}
 .profile__avatar{border-radius:50%;height:120px;margin:0 30px 0 0;padding:0;width:120px}@media screen and (min-width:320px) and (max-width:767px){.profile__avatar{margin:0 auto}}
+.profile__edit-avatar{background-image:url(images/edit-avatar.a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:0;height:120px;margin:0 30px 0 0;padding:0;position:absolute;transition:.1s linear;width:120px}.profile__edit-avatar:hover{background-color:rgba(0,0,0,.8);background-size:26px;cursor:pointer}
 .profile__data{align-items:center;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto;margin:0;max-width:340px;padding:0}@media screen and (min-width:320px) and (max-width:767px){.profile__data{-moz-column-gap:10px;column-gap:10px;grid-template-columns:1fr min-content;margin-top:23px;max-width:282px;row-gap:14px}}
 .profile__info{color:#fff;font-size:18px;font-weight:400;grid-column:1;grid-row:2;line-height:22px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (min-width:320px) and (max-width:767px){.profile__info{font-size:14px;line-height:17px;text-align:center}}
 .profile__name{color:#fff;font-size:42px;font-weight:500;grid-column:1;grid-row:1;line-height:48px;margin:0 0 16px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (min-width:320px) and (max-width:767px){.profile__name{font-size:27px;line-height:33px;margin-bottom:0;text-align:center}}
@@ -25,13 +26,15 @@
 
 
 
+
+
 .popup_active{opacity:1;visibility:visible}
 .popup__close-button{background-color:transparent;background-image:url(images/close-button.ad98de32e342afafa118.svg);background-size:32px;background-size:contain;border:none;height:32px;position:absolute;right:-40px;top:-40px;transition:.2s linear;width:32px}.popup__close-button:hover{cursor:pointer;opacity:.6}@media screen and (min-width:320px) and (max-width:767px){.popup__close-button{background-size:20px;height:20px;right:0;top:-35px;width:20px}}
 .popup__image-container{margin:0;max-height:75vh;max-width:75vw;position:relative}
 .popup__image{display:block;margin:0 auto;max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover}
 .popup__image-span{color:#fff;font-size:12px;font-weight:400;line-height:15px;margin:10px 0 0;max-width:-moz-fit-content;max-width:fit-content}
 .form{align-items:center;background-color:#fff;border-radius:10px;display:flex;flex-direction:column;height:-moz-fit-content;height:fit-content;margin:0;padding:0;position:relative;width:430px;z-index:150}@media screen and (min-width:320px) and (max-width:767px){.form{width:282px}}
-.form__title{font-size:24px;font-weight:900;line-height:29px;margin:34px 64px 54px 36px;width:330px}@media screen and (min-width:320px) and (max-width:767px){.form__title{font-size:18px;line-height:22px;margin:25px auto 75px;width:238px}}
+.form__title{font-size:24px;font-weight:900;line-height:29px;margin:34px 64px 38px 36px;width:330px}@media screen and (min-width:320px) and (max-width:767px){.form__title{font-size:18px;line-height:22px;margin:25px auto 75px;width:238px}}
 .form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;height:27px;line-height:17px;margin:0 auto;padding:0;width:358px}.form__input:focus{border:1px solid #000}@media screen and (min-width:320px) and (max-width:767px){.form__input{width:238px}}
 
 
