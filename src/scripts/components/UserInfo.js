@@ -1,22 +1,28 @@
 class UserInfo {
 
-  constructor(nameSelector, infoSelector) {
-    this._userName = document.querySelector(nameSelector);
-    this._userInfo = document.querySelector(infoSelector);
+  constructor(profileName, profileInfo, profileAvatar) {
+    this._userName = profileName;
+    this._userInfo = profileInfo;
+    this._userAvatar = profileAvatar;
+    this._userId = null;
   }
 
   getUserInfo() {
-    const userData = {
+    return {
       name: this._userName.textContent,
-      info: this._userInfo.textContent
+      about: this._userInfo.textContent,
+      id: this._userId,
     }
-
-   return userData;
   }
 
   setUserInfo(userData) {
     this._userName.textContent = userData.name;
-    this._userInfo.textContent = userData.info;
+    this._userInfo.textContent = userData.about;
+    this._userId = userData._id;
+  }
+
+  setUserAvatar(avatarLink) {
+    this._userAvatar.src = avatarLink;
   }
 
 }

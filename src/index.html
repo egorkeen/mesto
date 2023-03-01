@@ -14,10 +14,11 @@
       <!--основной контент-->
       <section class="profile">
         <!--профиль-->
-        <img src="<%=require('./images/Avatar.jpg')%>" class="profile__avatar" alt="Аватар">
+        <div class="profile__edit-avatar"></div>
+        <img src="#" class="profile__avatar" alt="Аватар">
         <div class="profile__data">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__info">Исследователь океана</p>
+          <h1 class="profile__name"></h1>
+          <p class="profile__info"></p>
           <button type="button" class="profile__edit-button" aria-label="Редактировать профиль"></button>
         </div>
         <button type="button" class="profile__add-button" aria-label="Добавить картинку"></button>
@@ -28,7 +29,7 @@
     </main>
     <footer class="footer">
       <!--подвал-->
-      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
     <div class="popup profile-popup" novalidate> <!--Редактирование профиля-->
       <form name="profile-form" class="form">
@@ -36,7 +37,7 @@
         <h3 class="form__title">Редактировать профиль</h3>
         <input type="text" id="name-input" name="name" class="form__input form__input_data_name" placeholder="Имя" minlength="2" maxlength="40" required>
         <span class="form__input-error name-input-error"></span>
-        <input type="text" id="info-input" name="info" class="form__input form__input_data_info" placeholder="Описание" minlength="2" maxlength="200" required>
+        <input type="text" id="info-input" name="about" class="form__input form__input_data_info" placeholder="Описание" minlength="2" maxlength="200" required>
         <span class="form__input-error info-input-error"></span>
         <button type="submit" id="submit-changes" class="form__submit-button profile-submit" aria-label="Сохранить изменения">Сохранить</button>
       </form>
@@ -59,6 +60,23 @@
         <span class="popup__image-span">Надпись</span>
       </div>
     </div>
+    <div class="popup avatar-popup"><!--Попап редактирования аватара-->
+        <form name="avatar-form" class="form">
+          <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
+          <h3 class="form__title">Обновить аватар</h3>
+          <input type="url" id="avatar-input" name="avatar" class="form__input form__input_avatar_link" placeholder="Ссылка на аватар" required>
+          <span class="form__input-error avatar-input-error"></span>
+          <button type="submit" id="submit-avatar" class="form__submit-button" aria-label="Сохранить изменения">Сохранить</button>
+        </form>
+    </div>
+    <div class="popup delete-popup"> <!--Попап удаления карточки-->
+      <form name="delete-form" class="form">
+        <button type="button" class="popup__close-button" aria-label="Закрыть окно"></button>
+        <h3 class="form__title">Вы уверены?</h3>
+        <button type="submit" id="submit-delete" class="form__submit-button" aria-label="Подтвердить удаление картинки">Да</button>
+      </form>
+
+    </div>
     <!--template-элемент-->
     <template class="template">
       <article class="element">
@@ -66,7 +84,10 @@
         <img class="element__image" src="#" alt="">
         <div class="element__container">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
+          <div class="element__like-container">
+            <button type="button" class="element__like-button" aria-label="Кнопка лайка"></button>
+            <span class="element__like-amount">0</span>
+          </div>
         </div>
         </article>
     </template>
