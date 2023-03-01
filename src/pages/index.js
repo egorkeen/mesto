@@ -7,14 +7,14 @@ import { Section } from '../scripts/components/Section.js';
 import { PopupWithConfirmation } from '../scripts/components/PopupWithConfirmation.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
-import { UserInfo } from '../scripts/components/UserInfo.js';
+import { UserData } from '../scripts/components/UserData.js';
 import { Api } from '../scripts/components/Api.js'
 import {
   profileForm,
   cardForm,
   avatarForm,
   profileName,
-  profileInfo,
+  profileAbout,
   profileAvatar,
   editButton,
   avatarEditButton,
@@ -36,12 +36,12 @@ const api = new Api ({
 })
 
 // сбрать данные с помощью класса UserInfo
-const profileData = new UserInfo (profileName, profileInfo, profileAvatar);
+const profileData = new UserData (profileName, profileAbout, profileAvatar);
 
 // получить имя, описание и аватар с сервера
-api.getUserInfo()
+api.getUserData()
 .then((res => {
-  profileData.setUserInfo(res);
+  profileData.setUserData(res);
   profileAvatar.src = res.avatar;
 }));
 
@@ -49,7 +49,7 @@ api.getUserInfo()
 const imagePopup = new PopupWithImage ('.image-popup');
 
 // попап удаления карточки
-const confirmationPopup = new PopupWithConfirmation ('.delete-popup',
+const confirmationPopup = new PopupWithConfirmation ('.confirmation-popup',
 (card, cardId) => {
   card.remove();
   api.deleteCard(cardId);
@@ -69,7 +69,7 @@ function createCard(dataCard) {
     confirmationPopup,
     like,
     dislike,
-    profileData.getUserInfo());
+    profileData.getUserData());
 
   return card.getView();
 }
@@ -92,9 +92,9 @@ api.getInitialCards()
 const profilePopup = new PopupWithForm ('.profile-popup',
   (inputData) => {
     profilePopup.setButtonText('Сохранение...');
-    api.setUserInfo(inputData)
+    api.setUserData(inputData)
     .then(() => {
-      profileData.setUserInfo(inputData);
+      profileData.setUserData(inputData);
       profilePopup.setButtonText('Сохранить')});
 });
 
@@ -136,7 +136,7 @@ avatarFormValidator.enableValidation();
 profilePopup.setEventListeners();
 editButton.addEventListener('click', () => {
   profileFormValidator.blockForm();
-  const { name, about } = profileData.getUserInfo();
+  const { name, about } = profileData.getUserData();
   nameInput.value = name;
   infoInput.value = about;
   profilePopup.open()

@@ -15,14 +15,14 @@ class Api {
   }
 
   // получить данные пользователя с сервера
-  getUserInfo() {
+  getUserData() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers
     }).then(this._checkStatus);
   }
 
   // обновить данные пользователя на сервере
-  setUserInfo(userData) {
+  setUserData(userData) {
     return fetch(this._baseUrl + '/users/me', {
       method: 'PATCH',
       headers: this._headers,

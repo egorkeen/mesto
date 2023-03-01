@@ -1,23 +1,23 @@
-class UserInfo {
+class UserData {
 
-  constructor(profileName, profileInfo, profileAvatar) {
+  constructor(profileName, profileAbout, profileAvatar) {
     this._userName = profileName;
-    this._userInfo = profileInfo;
+    this._userAbout = profileAbout;
     this._userAvatar = profileAvatar;
     this._userId = null;
   }
 
-  getUserInfo() {
+  getUserData() {
     return {
       name: this._userName.textContent,
-      about: this._userInfo.textContent,
+      about: this._userAbout.textContent,
       id: this._userId,
     }
   }
 
-  setUserInfo(userData) {
+  setUserData(userData) {
     this._userName.textContent = userData.name;
-    this._userInfo.textContent = userData.about;
+    this._userAbout.textContent = userData.about;
     this._userId = userData._id;
   }
 
@@ -27,4 +27,4 @@ class UserInfo {
 
 }
 
-export { UserInfo };
+export { UserData };

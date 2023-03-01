@@ -5,7 +5,7 @@ const avatarForm =document.forms['avatar-form'];
 
 // данные профиля
 const profileName = document.querySelector('.profile__name');
-const profileInfo = document.querySelector('.profile__info');
+const profileAbout = document.querySelector('.profile__about');
 const profileAvatar = document.querySelector('.profile__avatar');
 
 // кнопки
@@ -33,7 +33,7 @@ export {
   cardForm,
   avatarForm,
   profileName,
-  profileInfo,
+  profileAbout,
   profileAvatar,
   editButton,
   avatarEditButton,
