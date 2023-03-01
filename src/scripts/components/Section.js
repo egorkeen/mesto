@@ -6,7 +6,7 @@ class Section {
   }
 
   renderItems(cards) {
-    cards.forEach(this._renderer);
+    cards.reverse().forEach(this._renderer);
   }
 
   addItem(card) {

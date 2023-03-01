@@ -33,19 +33,21 @@ class Card {
 
   // лайкнуть карточку и со стороны пользователя, и со стороны сервера
   _likeCard() {
-    this._likeButton.classList.add('element__like-button_active');
     this._like(this._dataCard._id)
     .then((result) => {
       this._countLikeAmount(result);
-    });
+      this._likeButton.classList.add('element__like-button_active');
+    })
+    .catch(err => console.log(err));
   };
 // убрать лайк карточки и со стороны пользователя, и со стороны сервера
   _dislikeCard() {
-    this._likeButton.classList.remove('element__like-button_active');
     this._dislike(this._dataCard._id)
     .then((result) => {
       this._countLikeAmount(result);
-    });
+      this._likeButton.classList.remove('element__like-button_active');
+    })
+    .catch(err => console.log(err));
   };
 
   // проверить пользователя на владельца карточки и скрыть/отобразить кнопку удаления карточки

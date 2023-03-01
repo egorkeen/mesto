@@ -24,8 +24,11 @@ class PopupWithConfirmation extends Popup {
 
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-      this._handleSubmitDelete(this._card, this._cardId);
-      super.close();
+      this._handleSubmitDelete(this._card, this._cardId)
+      .then (() => {
+        super.close();
+      })
+      .catch(err => console.log(err));
     });
   };
 };

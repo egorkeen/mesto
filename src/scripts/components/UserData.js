@@ -18,13 +18,10 @@ class UserData {
   setUserData(userData) {
     this._userName.textContent = userData.name;
     this._userAbout.textContent = userData.about;
+    this._userAvatar.src = userData.avatar;
     this._userId = userData._id;
   }
-
-  setUserAvatar(avatarLink) {
-    this._userAvatar.src = avatarLink;
-  }
-
+  
 }
 
 export { UserData };
