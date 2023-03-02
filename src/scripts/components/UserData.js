@@ -21,7 +21,11 @@ class UserData {
     this._userAvatar.src = userData.avatar;
     this._userId = userData._id;
   }
-  
+
+  setUserAvatar(link) {
+    this._userAvatar.src = link;
+  }
+
 }
 
 export { UserData };

@@ -6,11 +6,7 @@ class PopupWithConfirmation extends Popup {
     super(popupSelector);
     this._handleSubmitDelete = handleSubmitDelete;
     this._form = this._popup.querySelector('.form');
-    this.submitButton = this._form.querySelector('.form__submit-button');
-  }
-
-  setButtonText(text) {
-    this._submitButton.textContent = text;
+    this._submitButton = this._form.querySelector('.form__submit-button');
   }
 
   open(card, cardId) {
@@ -24,11 +20,14 @@ class PopupWithConfirmation extends Popup {
 
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
+      const initialText = this._submitButton.textContent;
+      this._submitButton.textContent = "Удаление...";
       this._handleSubmitDelete(this._card, this._cardId)
-      .then (() => {
-        super.close();
-      })
-      .catch(err => console.log(err));
+      .then(() => super.close())
+      .catch(err => console.log(err))
+      .finally(() => {
+        this._submitButton.textContent = initialText;
+      });
     });
   };
 };

@@ -52,12 +52,9 @@ const imagePopup = new PopupWithImage ('.image-popup');
 
 // попап удаления карточки
 const confirmationPopup = new PopupWithConfirmation ('.confirmation-popup',
-(card, cardId) => {
-  api.deleteCard(cardId)
-  .then(() => {
-    card.remove();
-  })
-  .catch((err) => console.log(err));
+ (card, cardId) => {
+  return api.deleteCard(cardId)
+  .then(() => card.remove())
 });
 
 // создать функции кнопки лайка, чтобы создать карточку
@@ -91,8 +88,8 @@ const cardList = new Section ({
 const profilePopup = new PopupWithForm ('.profile-popup',
   (inputData) => {
     return api.setUserData(inputData)
-    .then(() => {
-      profileData.setUserData(inputData);
+    .then((res) => {
+      profileData.setUserData(res);
     })
 });
 
@@ -110,7 +107,7 @@ const avatarPopup = new PopupWithForm ('.avatar-popup',
  (inputData) => {
   return api.setAvatar(inputData.avatar)
   .then(() => {
-    profileAvatar.src = inputData.avatar;
+    profileData.setUserAvatar(inputData.avatar);
   })
  }
 );
@@ -130,8 +127,7 @@ avatarFormValidator.enableValidation();
 profilePopup.setEventListeners();
 editButton.addEventListener('click', () => {
   profileFormValidator.blockForm();
-  const userData = profileData.getUserData();
-  profilePopup.setInputValues(userData);
+  profilePopup.setInputValues(profileData.getUserData());
   profilePopup.open()
 });
 
